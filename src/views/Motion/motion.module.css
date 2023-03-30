@@ -1,0 +1,17 @@
+.card {
+  display: inline-block;
+  padding: 15px 20px;
+  border-radius: 8px;
+}
+
+.title {
+  color: #fff;
+}
+
+.detected {
+  background-color: rgb(239 68 68);
+}
+
+.notDetected {
+  background-color: rgb(74 222 128);  
+}
