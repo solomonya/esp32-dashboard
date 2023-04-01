@@ -1,6 +1,6 @@
 import { MsgBodyType, MsgToSend } from "../hooks/useWebSockets";
 
-export const createMsg = (bodyType: MsgBodyType, pin: number, value: number): MsgToSend => {
+export const createMsg = (bodyType: MsgBodyType, pin: number, value?: number): MsgToSend => {
   return ({
     action: 'msg',
     type: 'cmd',

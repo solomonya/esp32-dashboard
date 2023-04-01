@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
-import { MsgToSend } from "../../hooks/useWebSockets";
+import { useContext, useState } from "react";
 import { createMsg } from "../../utils/createMsg";
 import styles from './relaySwitcher.module.css';
+import { Esp32Ctx } from "../../container/esp32/esp32";
 
-interface Props {
-  sendMsg: (msg: MsgToSend) => void;
-}
 
 const pins = [
   { title: "Реле 1", pin: 18 },
@@ -14,10 +11,10 @@ const pins = [
 ];
 
 
-const RelaySwitcher = ({ sendMsg }: Props): React.ReactElement => {
+const RelaySwitcher = (): React.ReactElement => {
   const [selectedPin, setSelectedPin] = useState<number>(18);
   const [pinValue, setPinValue] = useState(false);
-
+  const { sendMsg } = useContext(Esp32Ctx); 
 
   const onSelectPin = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const pin = parseFloat(event.target.value);

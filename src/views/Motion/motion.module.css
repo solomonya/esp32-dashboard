@@ -1,11 +1,14 @@
 .card {
-  display: inline-block;
+  display: inline-flex;
   padding: 15px 20px;
   border-radius: 8px;
+  align-items: center;
+  justify-content: center;
 }
 
 .title {
   color: #fff;
+  font-size: 2rem;
 }
 
 .detected {

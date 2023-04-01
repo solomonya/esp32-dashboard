@@ -1,21 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import { WS_SERVER_URL } from './configs';
-import { useWebSockets } from './hooks';
-import { Motion, RelaySwitcher } from './views';
+import { Eps32Provider } from './container/esp32/esp32';
+import { DistanceSensor, GasLeak, Motion, RelaySwitcher, Temperature } from './views';
+import styles from './app.module.css';
+
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  const { receivedMsgData, sendMsg } = useWebSockets({ wsUrl: WS_SERVER_URL });
-
-  console.log(receivedMsgData);
-
   return (
-    <div className="App">
-      <RelaySwitcher sendMsg={sendMsg} />
-      <Motion isMotionDetected={receivedMsgData?.body.isMotionDetected ?? 0} />
-    </div>
+    <Eps32Provider>
+       <main className={styles.wrapper}>
+          <section className={styles.section}>
+            <h1 className={styles.title}>ESP32 Дашборд</h1>
+            <RelaySwitcher />
+            <div className={styles.app}>
+              <Motion />
+              <Temperature />
+              <GasLeak />
+              <DistanceSensor />
+            </div>
+          </section>
+       </main>
+    </Eps32Provider>
+   
   )
 }
 
