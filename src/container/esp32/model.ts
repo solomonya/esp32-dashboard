@@ -3,7 +3,8 @@ export type MsgBodyType = "digitalRead" | "digitalWrite" | "pinMode";
 export const TypeMsg = {
   cmd: 'cmd',
   dataReceived: 'dataReceived',
-  pinChange: 'pinChange'
+  pinChange: 'pinChange',
+  output: 'output'
 } as const;
 
 export type MsgType = keyof typeof TypeMsg;
@@ -34,19 +35,23 @@ export interface ReducerAction {
   payload: Record<string, any>;
 }
 
+export interface PinData {
+  pin: number;
+  value: number;
+}
+
+export interface SensorData {
+  gasLeak: number;
+  hum: number;
+  isMotionDetected: number;
+  temp: number;
+  distanceSensorValue: number;
+};
+
 export interface Esp32State {
-  pinState: {
-      19: number;
-      18: number;
-      22: number;
-    };
-    sensorData: {
-      gasLeak: number;
-      hum: number;
-      isMotionDetected: number;
-      temp: number;
-      distanceSensor: number;
-    };
+  pinState: Record<number, number>;
+  sensorData: SensorData;
+  onUpdatePin: (newPinData: PinData) => void;
 }
 
 export const pins = [

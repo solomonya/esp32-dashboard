@@ -1,3 +1,12 @@
+.widget {
+  display: inline-flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 4px 4px 8px 0px rgba(63, 100, 129, 0.2);
+}
+
 .select {
   padding: 8px 20px;
   border-radius: 8px;
@@ -8,7 +17,21 @@
 
 .title {
   font-size: 1.3rem;
-  margin-bottom: 10px;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.title_bold {
+  font-weight: 700;
+}
+
+.title_on {
+  color: rgb(74 222 128);
+}
+
+.title_off {
+  color: rgb(239 68 68);
 }
 
 .select:focus {

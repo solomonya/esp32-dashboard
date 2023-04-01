@@ -8,14 +8,9 @@ interface Props {
 export type MsgBodyType = "digitalRead" | "digitalWrite" | "pinMode";
 
 interface ReceivedMsgData {
-  action: "msg", 
-  body: {
-   gasLeak: number;
-   hum: number;
-   isMotionDetected: 0 | 1;
-   temp: number;
-  },
-  type: MsgType
+  action: "msg"; 
+  body: unknown;
+  type: MsgType;
 }
 
 export interface MsgToSend {
@@ -43,7 +38,8 @@ const useWebSockets = ({ wsUrl }: Props) => {
 
   const sendMsg = useCallback((msg: MsgToSend) => {
     const stringifiedMsg = JSON.stringify(msg);
-    setMessagesToSent((msgs) => [...msgs, stringifiedMsg]);
+    if(readyState) wsRef.current?.send(stringifiedMsg);
+    else setMessagesToSent((msgs) => [...msgs, stringifiedMsg]);    
   }, []);
 
   useEffect(() => {
